@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Armas {
+  id                Int              @id @default(autoincrement())
+  registro          String
+  calibre           String
+  capacidadeMunicao String
+  acessorios        String
+  Funcionamento     String
+  ativo             Boolean
+  id_user_create    Int
+  create_at         DateTime         @default(now())
+  alter_at          DateTime?        @updatedAt
+  id_user_alt       Int?
+  tiposDeArmasId    Int?
+  marcasDeArmasId   Int?
+  municoesDeArmasId Int?
+  TiposDeArmas      TiposDeArmas?    @relation(fields: [tiposDeArmasId], references: [id])
+  marca             MarcasDeArmas?   @relation(fields: [marcasDeArmasId], references: [id])
+  municoes          MunicoesDeArmas? @relation(fields: [municoesDeArmasId], references: [id])
+
+  @@map("arma")
+}
+
+model MarcasDeArmas {
+  id             Int       @id @default(autoincrement())
+  marca          String
+  ativo          Boolean
+  id_user_create Int
+  create_at      DateTime  @default(now())
+  alter_at       DateTime? @updatedAt
+  id_user_alt    Int?
+  Armas          Armas[]
+
+  @@map("marca")
+}
+
+model MunicoesDeArmas {
+  id             Int       @id @default(autoincrement())
+  descricao      String
+  create_at      DateTime  @default(now())
+  ativo          Boolean
+  id_user_create Int
+  alter_at       DateTime? @updatedAt
+  id_user_alt    Int?
+  Armas          Armas[]
+
+  @@map("municao")
+}
+
+model TiposDeArmas {
+  id             Int       @id @default(autoincrement())
+  tipo           String
+  create_at      DateTime  @default(now())
+  ativo          Boolean
+  id_user_create Int
+  alter_at       DateTime? @updatedAt
+  id_user_alt    Int?
+  armas          Armas[]
+
+  @@map("tipo")
+}
