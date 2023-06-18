@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import prismaClient from '../../dataBase/';
+import { converteTexto } from '../../funcoes/funcoes';
 import { TipoDeArma } from '../../types/types';
 
 class TipoDeArmaService{
@@ -18,12 +19,15 @@ class TipoDeArmaService{
       
 		}
 	}
+
+  
 	async insereTipoDeArma(requestBody: TipoDeArma, id_usuario: number){
 		try {
-			const { id_user_create, ...data } = requestBody;
+			const { id_user_create, tipo, ...data } = requestBody;
 			const create = await prismaClient.tiposDeArmas.create({
 				data: {
 					id_user_create: id_usuario,
+					tipo,
 					...data,
 				}
 			});

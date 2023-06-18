@@ -9,4 +9,4 @@
 ![BD](image.png)
 
 # [] JEST
-# [] SEED
+# [x] SEED

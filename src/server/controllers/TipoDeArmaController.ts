@@ -18,6 +18,7 @@ const TipoDeArmaController = {
 		try {
 			const service = new TipoDeArmaService();
 			const requestBody = request.body; 
+			const { tipo } = requestBody;
 			const id_usuario = 1;
 			const result = await service.insereTipoDeArma(requestBody, id_usuario);
 			if (result) return response.status(200).json({ message: 'Sucesso ao cadastrar.' });

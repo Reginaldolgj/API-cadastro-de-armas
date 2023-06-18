@@ -16,7 +16,7 @@ model Armas {
   calibre           String
   capacidadeMunicao String
   acessorios        String
-  Funcionamento     String
+  Funcionamento     String //TODO: FIX ME F maiusculo
   ativo             Boolean
   id_user_create    Int
   create_at         DateTime         @default(now())
