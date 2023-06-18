@@ -18,4 +18,13 @@ describe('Rota: Marca de armas', () => {
     })
 		expect(res.status).toBe(200);
 	});
+  it('Cria marca de armas duplicada', async () => {
+		const res = await request(server)
+    .post('/marcadearma/')
+    .send({
+      marca: "Taurus",
+      ativo: true
+    })
+		expect(res.status).toBe(409);
+	});
 });

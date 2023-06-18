@@ -1,4 +1,5 @@
 export function converteTexto(str: string) {
-	const normalizedStr = str.normalize('NFD').replace(/[\u0300-\u036f\s]/g, ''); // Remove acentos e espaços
-	return normalizedStr.toLowerCase();
+  const trimmedStr = str.trim(); // Remove espaços no início e no fim
+  const normalizedStr = trimmedStr.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove acentos
+  return normalizedStr.toUpperCase(); // Maiusculo
 }

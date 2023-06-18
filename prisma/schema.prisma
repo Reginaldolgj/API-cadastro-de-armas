@@ -34,7 +34,7 @@ model Armas {
 
 model MarcasDeArmas {
   id             Int       @id @default(autoincrement())
-  marca          String
+  marca          String    @unique
   ativo          Boolean
   id_user_create Int
   create_at      DateTime  @default(now())
@@ -47,7 +47,7 @@ model MarcasDeArmas {
 
 model MunicoesDeArmas {
   id             Int       @id @default(autoincrement())
-  descricao      String
+  descricao      String    @unique
   create_at      DateTime  @default(now())
   ativo          Boolean
   id_user_create Int
@@ -60,7 +60,7 @@ model MunicoesDeArmas {
 
 model TiposDeArmas {
   id             Int       @id @default(autoincrement())
-  tipo           String
+  tipo           String    @unique
   create_at      DateTime  @default(now())
   ativo          Boolean
   id_user_create Int
