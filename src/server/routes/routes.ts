@@ -29,6 +29,4 @@ router.post('/tipodearma', TipoDeArmaController.insere);
 router.put('/tipodearma', TipoDeArmaController.atualiza);
 router.put('/tipodearma/desativa', TipoDeArmaController.desativa);
 
-
-
 export {router}; 
