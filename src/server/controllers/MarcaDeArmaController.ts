@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { MarcaDeArmaService } from '../service/MarcaDeArmaService';
 import { converteTexto } from '../../funcoes/funcoes';
+import { MarcaSchema } from '../../types/SchemaValidations';
 
 const MarcaDeArmaController = {
 	
@@ -17,8 +18,21 @@ const MarcaDeArmaController = {
 	},
 	async insere(request: Request, response: Response) {
 		try {
+
 			const service = new MarcaDeArmaService();
 			const requestBody = request.body; 
+
+      const validationResult = MarcaSchema.safeParse(requestBody);
+
+      if (!validationResult.success) {
+        const validationErrors = validationResult.error.flatten();
+  
+        return response.status(400).json({
+          message: 'Erro de validação',
+          errors: validationErrors,
+        });
+      }
+
       const {marca} = requestBody;
       const marcaUpperTrim = converteTexto(marca)
 			const id_usuario = 1;

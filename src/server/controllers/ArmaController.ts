@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ArmaService } from '../service/ArmaService';
+import { ArmaSchema } from '../../types/SchemaValidations';
 
 const ArmaController = {
 	async lista(request: Request,response: Response) {
@@ -15,8 +16,16 @@ const ArmaController = {
 	},
 	async insere(request: Request, response: Response) {
 		try {
-			const service = new ArmaService();
+      const service = new ArmaService();
 			const requestBody = request.body; 
+      const validationResult = ArmaSchema.safeParse(requestBody);
+      if (!validationResult.success) {
+        const validationErrors = validationResult.error.flatten();
+        return response.status(400).json({
+          message: 'Erro de validação',
+          errors: validationErrors,
+        });
+      }
 			const id_usuario = 1;
 			const result = await service.insereArma(requestBody, id_usuario);
 			if (result) return response.status(200).json({ message: 'Sucesso ao cadastrar.' });
