@@ -47,8 +47,7 @@ class MarcaDeArmaService{
 			});
 			return atualiza;
 		} catch (error) {
-			console.log(error);
-			return false;
+      return handlePrismaUniqueConstraintError(error);
 		}
 	}
 	async desativaMarcaDeArma(requestBody: MarcaDeArma, id_usuario: string){

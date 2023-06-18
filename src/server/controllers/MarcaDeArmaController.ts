@@ -37,6 +37,7 @@ const MarcaDeArmaController = {
 			const requestBody = request.body; 
 			const id_usuario = '1';
 			const result = await service.atualizaMarcaDeArma(requestBody, id_usuario);
+			if (result === 409) return response.status(409).json({ message: 'Erro de unicidade: já existe uma marca de arma com o mesmo nome.' });
 			if (result) return response.status(200).json({ message: 'Sucesso ao alterar.' });
 		} catch (error) {
 			return response.status(400).json({ message: 'Erro interno do servidor.' });
