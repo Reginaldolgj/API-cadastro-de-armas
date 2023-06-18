@@ -7,25 +7,19 @@ Siga as instruções abaixo para clonar e executar o projeto:
 
     Clone o repositório para sua máquina local.
 
-bash
 
 git clone <URL do repositório>
 
     Navegue até o diretório do projeto.
 
-bash
 
 cd almoxarifado
 
     Instale as dependências do projeto usando o gerenciador de pacotes Yarn.
 
-bash
-
 yarn
 
     Inicie o servidor de desenvolvimento.
-
-bash
 
 yarn dev
 
@@ -49,13 +43,10 @@ Testes
 
 O projeto possui testes automatizados implementados com o framework Jest. Para executar os testes, utilize o seguinte comando:
 
-bash
-
 yarn test
 
 Você também pode gerar um relatório de cobertura de código executando o comando:
 
-bash
 
 yarn coverage
 
@@ -64,7 +55,6 @@ Seed
 
 O projeto possui um comando para popular o banco de dados com dados iniciais. Para executar o comando de seed, utilize o seguinte comando:
 
-bash
 
 yarn seed
 
